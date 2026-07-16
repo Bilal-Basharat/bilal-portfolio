@@ -1,26 +1,149 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ============================================================
+   Design tokens — "Midnight Terminal"
+   ============================================================ */
+@theme {
+  /* Colors */
+  --color-ink: #070b14;
+  --color-surface: #0d1322;
+  --color-surface-2: #111a2e;
+  --color-line: rgba(148, 163, 184, 0.12);
+  --color-text: #e6eaf2;
+  --color-muted: #8a94a7;
+  --color-amber: #ffb454;
+  --color-amber-soft: rgba(255, 180, 84, 0.14);
+  --color-teal: #5eead4;
+  --color-teal-soft: rgba(94, 234, 212, 0.1);
+
+  /* Typography */
+  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-body: var(--font-manrope), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================================
+   Base
+   ============================================================ */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-ink);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-amber);
+  color: var(--color-ink);
+}
+
+/* Accessible focus ring */
+:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   Hero background layers
+   ============================================================ */
+
+/* Layer 1 — engineering grid */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 75%);
+}
+
+/* Layer 2 — aurora orbs */
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.55;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.orb-amber {
+  width: 34rem;
+  height: 34rem;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 180, 84, 0.25), transparent 55%);
+  animation: drift-a 26s var(--ease-out-expo) infinite alternate;
+}
+
+.orb-teal {
+  width: 28rem;
+  height: 28rem;
+  background: radial-gradient(circle at 70% 60%, rgba(94, 234, 212, 0.18), transparent 65%);
+  animation: drift-b 32s var(--ease-out-expo) infinite alternate;
+}
+
+@keyframes drift-a {
+  from { transform: translate(-8%, -4%) scale(1); }
+  to   { transform: translate(10%, 12%) scale(1.15); }
+}
+
+@keyframes drift-b {
+  from { transform: translate(6%, 10%) scale(1.1); }
+  to   { transform: translate(-10%, -6%) scale(0.95); }
+}
+
+/* Layer 3 — film grain (pure CSS, no image asset needed) */
+.bg-noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   Reveal-on-load animation (hero content)
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: reveal 0.9s var(--ease-out-expo) forwards;
+}
+
+.reveal-delay-1 { animation-delay: 0.1s; }
+.reveal-delay-2 { animation-delay: 0.22s; }
+.reveal-delay-3 { animation-delay: 0.34s; }
+.reveal-delay-4 { animation-delay: 0.46s; }
+
+@keyframes reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   Reduced motion — kill all animation, keep the design intact
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .orb,
+  .reveal {
+    animation: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
