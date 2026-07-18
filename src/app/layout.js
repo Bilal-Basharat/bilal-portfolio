@@ -20,7 +20,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://bilalbasharat.dev"), // update when you buy the domain
+  metadataBase: new URL("https://bilalbasharat.dev"),
   title: "Bilal Basharat — Full Stack Developer (React.js & Laravel)",
   description:
     "Full stack developer in Lahore building SaaS products with Laravel, React.js and Next.js. Shipped a restaurant kiosk platform running in 15 restaurants.",

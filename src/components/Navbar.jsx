@@ -3,18 +3,27 @@
 import { useEffect, useState } from "react";
 
 const LINKS = [
-  { href: "#experience", label: "Experience" },
-  { href: "#projects", label: "Projects" },
-  { href: "#skills", label: "Skills" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#skills", label: "Skills" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    let lastY = window.scrollY;
+
+    const onScroll = () => {
+      const y = window.scrollY;
+
+      setScrolled(y > 24);
+      setHidden(y > lastY && y > 80);
+      lastY = y;
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -23,6 +32,8 @@ export default function Navbar() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        hidden && !open ? "-translate-y-full" : "translate-y-0"
+      } ${
         scrolled
           ? "border-b border-line bg-ink/80 backdrop-blur-md"
           : "bg-transparent"
@@ -31,7 +42,7 @@ export default function Navbar() {
       <nav className="flex h-16 w-full items-center justify-between px-6 md:px-14 lg:px-20">
         {/* Logo */}
         <a
-          href="#top"
+          href="/#top"
           className="font-mono text-sm tracking-widest text-text"
           aria-label="Back to top"
         >
@@ -72,11 +83,25 @@ export default function Navbar() {
           aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((v) => !v)}
         >
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 22 22"
+            fill="none"
+            aria-hidden="true"
+          >
             {open ? (
-              <path d="M4 4l14 14M18 4L4 18" stroke="currentColor" strokeWidth="1.6" />
+              <path
+                d="M4 4l14 14M18 4L4 18"
+                stroke="currentColor"
+                strokeWidth="1.6"
+              />
             ) : (
-              <path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" strokeWidth="1.6" />
+              <path
+                d="M3 6h16M3 11h16M3 16h16"
+                stroke="currentColor"
+                strokeWidth="1.6"
+              />
             )}
           </svg>
         </button>

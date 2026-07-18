@@ -62,8 +62,16 @@ body {
     linear-gradient(to right, var(--color-line) 1px, transparent 1px),
     linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
   background-size: 72px 72px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 75%);
+  mask-image: radial-gradient(
+    ellipse 80% 60% at 50% 40%,
+    black 30%,
+    transparent 75%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 60% at 50% 40%,
+    black 30%,
+    transparent 75%
+  );
 }
 
 /* Layer 2 — aurora orbs */
@@ -79,25 +87,41 @@ body {
 .orb-amber {
   width: 34rem;
   height: 34rem;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 180, 84, 0.25), transparent 55%);
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 180, 84, 0.25),
+    transparent 55%
+  );
   animation: drift-a 26s var(--ease-out-expo) infinite alternate;
 }
 
 .orb-teal {
   width: 28rem;
   height: 28rem;
-  background: radial-gradient(circle at 70% 60%, rgba(94, 234, 212, 0.18), transparent 65%);
+  background: radial-gradient(
+    circle at 70% 60%,
+    rgba(94, 234, 212, 0.18),
+    transparent 65%
+  );
   animation: drift-b 32s var(--ease-out-expo) infinite alternate;
 }
 
 @keyframes drift-a {
-  from { transform: translate(-8%, -4%) scale(1); }
-  to   { transform: translate(10%, 12%) scale(1.15); }
+  from {
+    transform: translate(-8%, -4%) scale(1);
+  }
+  to {
+    transform: translate(10%, 12%) scale(1.15);
+  }
 }
 
 @keyframes drift-b {
-  from { transform: translate(6%, 10%) scale(1.1); }
-  to   { transform: translate(-10%, -6%) scale(0.95); }
+  from {
+    transform: translate(6%, 10%) scale(1.1);
+  }
+  to {
+    transform: translate(-10%, -6%) scale(0.95);
+  }
 }
 
 /* Layer 3 — film grain (pure CSS, no image asset needed) */
@@ -119,10 +143,18 @@ body {
   animation: reveal 0.9s var(--ease-out-expo) forwards;
 }
 
-.reveal-delay-1 { animation-delay: 0.1s; }
-.reveal-delay-2 { animation-delay: 0.22s; }
-.reveal-delay-3 { animation-delay: 0.34s; }
-.reveal-delay-4 { animation-delay: 0.46s; }
+.reveal-delay-1 {
+  animation-delay: 0.1s;
+}
+.reveal-delay-2 {
+  animation-delay: 0.22s;
+}
+.reveal-delay-3 {
+  animation-delay: 0.34s;
+}
+.reveal-delay-4 {
+  animation-delay: 0.46s;
+}
 
 @keyframes reveal {
   to {
@@ -148,7 +180,6 @@ body {
   }
 }
 
-
 /* ============================================================
    Scroll-triggered reveal for timeline items
    ============================================================ */
@@ -156,7 +187,9 @@ body {
 .timeline-item.will-reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+  transition:
+    opacity 0.7s var(--ease-out-expo),
+    transform 0.7s var(--ease-out-expo);
 }
 
 .timeline-item.in-view {
@@ -166,6 +199,34 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .timeline-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ============================================================
+   styling for projects section
+   ============================================================ */
+
+.timeline-item.will-reveal,
+.reveal-item.will-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s var(--ease-out-expo),
+    transform 0.7s var(--ease-out-expo);
+}
+
+.timeline-item.will-reveal.in-view,
+.reveal-item.will-reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-item.will-reveal,
+  .reveal-item.will-reveal {
     opacity: 1;
     transform: none;
     transition: none;

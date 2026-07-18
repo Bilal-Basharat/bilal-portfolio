@@ -24,7 +24,16 @@ const EXPERIENCE = [
       "Developed the company e-commerce platform with integrated checkout and subscription payments.",
       "Collaborated in an Agile team with structured code reviews, and deployed and maintained the application on a production VPS.",
     ],
-    stack: ["Laravel", "React.js", "MySQL", "Tailwind CSS", "REST APIs", "Airwallex", "Git", "GitHub"],
+    stack: [
+      "Laravel",
+      "React.js",
+      "MySQL",
+      "Tailwind CSS",
+      "REST APIs",
+      "Airwallex",
+      "Git",
+      "GitHub",
+    ],
   },
   {
     company: "Tiers Limited",
@@ -47,7 +56,15 @@ const EXPERIENCE = [
       "Built QuizHub, a quiz application with real-time data and user progress backed by Firebase.",
       "Developed supporting REST services for quiz content and results handling.",
     ],
-    stack: ["Flutter", "Dart", "Firebase", "Node.js", "Express.js", "Git", "GitHub"],
+    stack: [
+      "Flutter",
+      "Dart",
+      "Firebase",
+      "Node.js",
+      "Express.js",
+      "Git",
+      "GitHub",
+    ],
   },
 ];
 
@@ -67,7 +84,7 @@ export default function Experience() {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
 
     items.forEach((item) => observer.observe(item));
@@ -100,7 +117,10 @@ export default function Experience() {
 
         <ol className="space-y-14 md:space-y-16">
           {EXPERIENCE.map((job) => (
-            <li key={job.company} className="timeline-item relative pl-10 md:pl-14">
+            <li
+              key={job.company}
+              className="timeline-item relative pl-10 md:pl-14"
+            >
               {/* Timeline dot */}
               <span
                 className="absolute top-2 left-0 flex h-[15px] w-[15px] items-center justify-center rounded-full border border-amber/60 bg-ink md:h-[19px] md:w-[19px]"
@@ -131,7 +151,10 @@ export default function Experience() {
                     key={item}
                     className="flex gap-3 text-sm leading-relaxed text-muted md:text-base"
                   >
-                    <span className="mt-[9px] h-1 w-3 shrink-0 rounded-full bg-teal/50" aria-hidden="true" />
+                    <span
+                      className="mt-[9px] h-1 w-3 shrink-0 rounded-full bg-teal/50"
+                      aria-hidden="true"
+                    />
                     <span>{item}</span>
                   </li>
                 ))}
