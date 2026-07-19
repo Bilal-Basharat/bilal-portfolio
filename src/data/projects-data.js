@@ -58,7 +58,7 @@ export const PROJECTS = [
   category: "Mobile App",
   stack: ["Flutter", "Dart", "Node.js", "Express.js", "MongoDB", "Firebase", "JWT", "Git", "GitHub"],
   links: {
-    github: "https://github.com/Bilal-Basharat/QuizHub", // TODO: replace with the actual repo URL
+    github: "https://github.com/Bilal-Basharat/quiz-app", 
     live: null,
   },
   problem:
