@@ -65,7 +65,7 @@ export default function Navbar() {
           ))}
           <li>
             <a
-              href="/bilal-basharat-resume.pdf"
+              href="/bilal_resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-md border border-amber/40 px-4 py-2 font-mono text-xs text-amber transition-colors duration-200 hover:bg-amber-soft"

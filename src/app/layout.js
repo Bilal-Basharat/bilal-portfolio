@@ -1,5 +1,7 @@
 import { Space_Grotesk, Manrope, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import CursorSpotlight from "@/components/CursorSpotlight";
+import BackToTop from "@/components/BackToTop";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -38,7 +40,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${spaceGrotesk.variable} ${manrope.variable} ${jetbrainsMono.variable}`}
       >
+         <CursorSpotlight />
         {children}
+         <BackToTop />
       </body>
     </html>
   );

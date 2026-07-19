@@ -70,7 +70,7 @@ function useTypewriter(phrases, typingSpeed = 55, pause = 1800) {
 }
 
 export default function Hero() {
-  const spotlightRef = useRef(null);
+  // const spotlightRef = useRef(null);
   const frame = useRef(0);
   const { text: typedText, enabled: typingEnabled } =
     useTypewriter(TYPED_PHRASES);
@@ -85,9 +85,9 @@ export default function Hero() {
     const onMove = (e) => {
       cancelAnimationFrame(frame.current);
       frame.current = requestAnimationFrame(() => {
-        if (spotlightRef.current) {
-          spotlightRef.current.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(255,180,84,0.07), transparent 70%)`;
-        }
+        // if (spotlightRef.current) {
+        //   spotlightRef.current.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(255,180,84,0.05), transparent 70%)`;
+        // }
       });
     };
 
@@ -110,11 +110,11 @@ export default function Hero() {
         className="orb orb-teal right-[-6rem] bottom-[-8rem]"
         aria-hidden="true"
       />
-      <div
+      {/* <div
         ref={spotlightRef}
         className="pointer-events-none fixed inset-0 z-10"
         aria-hidden="true"
-      />
+      /> */}
 
       {/* Content — full width */}
       <div className="relative z-20 w-full px-6 pt-28 pb-20 md:px-14 md:pt-24 lg:px-20">

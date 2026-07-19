@@ -46,16 +46,17 @@ function Screenshots({ shots }) {
       {shots.map((shot) => (
         <figure
           key={shot.src}
-          className="overflow-hidden rounded-lg border border-line bg-surface"
+          className="overflow-hidden rounded-lg border border-white/25 bg-surface shadow-lg shadow-black/30 ring-1 ring-black/40 transition-colors hover:border-teal/40"
         >
-          <Image
-            src={shot.src}
-            alt={shot.alt}
-            width={0}
-            height={0}
-            sizes="(max-width: 640px) 100vw, 50vw"
-            className="h-auto w-full"
-          />
+          <div className="relative h-64 border-b border-white/10 bg-ink/40 p-1.5 md:h-80">
+            <Image
+              src={shot.src}
+              alt={shot.alt}
+              fill
+              sizes="(max-width: 640px) 100vw, 50vw"
+              className="rounded-md object-contain p-1.5"
+            />
+          </div>
           <figcaption className="px-3 py-2 font-mono text-[11px] text-muted">
             {shot.caption}
           </figcaption>
